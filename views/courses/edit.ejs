@@ -1,0 +1,127 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="row">
+    <h1 class="text-center">Edit Course</h1>
+    <div class="col-6 offset-3">
+        <form
+                action="/courses/<%= currInfo._id %>?_method=PUT"
+                method="POST"
+                class="validated-form"
+                enctype="multipart/form-data"
+                novalidate
+        >
+            <div class="mb-3">
+                <label class="form-lable" for="title">Title: </label>
+                <input
+                        class="form-control"
+                        type="text"
+                        name="course[title]"
+                        id="title"
+                        placeholder="enter title.."
+                        value="<%= currInfo.title %>"
+                        required
+                />
+                <div class="valid-feedback">Looks Alright!!</div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-lable" for="instructor">Instructor:</label>
+                <input
+                        class="form-control"
+                        type="text"
+                        name="course[instructor]"
+                        id="instructor"
+                        placeholder="enter instructor.."
+                        value="<%= currInfo.instructor %>"
+                        required
+                />
+                <div class="valid-feedback">Looks Alright!!</div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-lable" for="url">Url:</label>
+                <input
+                        class="form-control"
+                        type="text"
+                        name="course[url]"
+                        id="url"
+                        placeholder="enter url.."
+                        value="<%= currInfo.url %>"
+                        required
+                />
+                <div class="valid-feedback">Looks Alright!!</div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-lable" for="price">Price:</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="price-label">$</span>
+                    <input
+                            type="text"
+                            class="form-control"
+                            placeholder="0.00"
+                            name="course[price]"
+                            aria-label="price"
+                            aria-describedby="price-label"
+                            value="<%= currInfo.price %>"
+                            required
+                    />
+                </div>
+
+                <div class="valid-feedback">Looks Alright!!</div>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-lable" for="description">Description:</label>
+                <textarea
+                        class="form-control"
+                        type="text"
+                        name="course[description]"
+                        id="description"
+                        placeholder="enter description.."
+                        required
+                ><%= currInfo.description %>
+                </textarea>
+                <div class="valid-feedback">Looks Alright!!</div>
+            </div>
+
+            <div class="mb-3">
+                <div class="form-file custom-file">
+                    <input type="file" class="form-file-input" id="image" name="course[image]" multiple>
+                    <label class="form-file-label" for="image">
+                        <span class="form-file-text custom-file-label">Add more image(s)...</span>
+                        <span class="form-file-button">Browse</span>
+                    </label>
+                </div>
+            </div>
+
+
+            <div class="mb-3">
+                <label class="form-lable my-3">Click on Images to delete:</label><br>
+                <% currInfo.images.forEach(function (pic, i) { %>
+                    <div class="form-check-inline">
+                        <input type="checkbox" id="image-<%=i%>" name="deleteImages[]" value="<%=pic.filename%>">
+                        <label for="image-<%=i%>"><img src="<%= pic.thumbnail %>" class="img-thumbnail mb-2" alt=""></label>
+                    </div>
+                <% }) %>
+
+            </div>
+
+            <div class="mb-3">
+                <button class="btn btn-info ">Edit Course</button>
+            </div>
+        </form>
+
+        <div class="mb-3">
+            <button
+                    class="btn btn-secondary"
+                    onclick="location.href='/courses/<%= currInfo.id %>'"
+            >
+                Cancel Edit
+            </button>
+        </div>
+        <button class="btn btn-dark mb-3" onclick="location.href='/courses'">
+            Go Back to All courses
+        </button>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<% layout('layouts/boilerplate') %>
+<link rel="stylesheet" href="/stylesheets/app.css"></link>
+
+<h1 class="my-3">All the Courses: </h1>
+
+<% for(let course of allCourses) { %>
+    <div class="card mb-3">
+        <div class="row">
+            <div class="col-md-4">
+                <% if(course.images.length > 0) { %>
+                    <img
+                            class="img-fluid"
+                            src="<%= course.images[0].url %>"
+                            alt="No Image Uploded"
+                    />
+                <% } else { %>
+                    <img
+                            class="img-fluid"
+                            src="https://res.cloudinary.com/mahir1301/image/upload/v1622038799/YelpCamp/kv9spguuztm0t50tcxsp.jpg"
+                            alt="No Image Uploded"
+                    />
+                <% } %>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title"><%= course.title %></h5>
+                    <p class="card-text"><%= course.description %></p>
+                    <p class="card-text">
+                        <small class="text-muted"><%= course.location %></small>
+                    </p>
+
+                    <a class="btn btn-primary" href="/courses/<%= course._id %>"
+                    >View <%= course.title %></a
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+<% } %>
