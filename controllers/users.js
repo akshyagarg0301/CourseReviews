@@ -34,7 +34,7 @@ const loginPost = (req, res) => {
 
 const logoutMethod = (req, res) => {
   req.logout();
-  req.flash('success', 'Tata!')
+  req.flash('success', 'GoodBye!')
   res.redirect('/courses');
 };
 
